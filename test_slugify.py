@@ -22,6 +22,11 @@ class SlugifyTests(unittest.TestCase):
     def test_preserves_existing_hyphens_and_digits(self):
         self.assertEqual(slugify("Already-Slugged-123"), "already-slugged-123")
 
+    def test_transliterates_accented_latin_letters(self):
+        self.assertEqual(slugify("Café ñ"), "cafe-n")
+        self.assertEqual(slugify("Crème Brûlée"), "creme-brulee")
+        self.assertEqual(slugify("Ångström"), "angstrom")
+
 
 if __name__ == "__main__":
     unittest.main()
